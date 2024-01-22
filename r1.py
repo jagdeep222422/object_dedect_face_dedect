@@ -3,7 +3,7 @@ import numpy as np
 import urllib.request
 import face_recognition
 # Load a sample image with known faces
-known_image = face_recognition.load_image_file("C:/Users/Pradeep kumar mahato/Pictures/Camera Roll/WIN_20240117_20_45_26_Pro.jpg")
+known_image = face_recognition.load_image_file("local/image/path/fimename.jpg")
 known_encoding = face_recognition.face_encodings(known_image)[0]
 # Download YOLO files
 yolo_files = {
@@ -15,7 +15,6 @@ yolo_files = {
 for file, url in yolo_files.items():
     urllib.request.urlretrieve(url, file)
 
-# Rest of the code remains the same...
 net = cv2.dnn.readNet("yolov3.weights", "yolov3.cfg")
 layer_names = net.getLayerNames()
 output_layers_indices = net.getUnconnectedOutLayers()
@@ -29,10 +28,8 @@ cap = cv2.VideoCapture(0,cv2.CAP_DSHOW)  # Use '0' for the default camera. Chang
 
 while cap.isOpened():
     ret, frame = cap.read()
-
     if not ret:
         break
-
     height, width, channels = frame.shape
     #face dedect
     face_locations = face_recognition.face_locations(frame)
@@ -44,7 +41,7 @@ while cap.isOpened():
 
         name = "Unknown"
         if matches[0]:
-            name = "Jagdeep"
+            name = "know"
         cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
         font = cv2.FONT_HERSHEY_DUPLEX
         cv2.putText(frame, name, (left + 6, bottom - 6), font, 0.5, (255, 255, 255), 1)
@@ -86,9 +83,7 @@ while cap.isOpened():
             #cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
     # Display the result
-    cv2.imshow("YOLO Face Detection", frame)
-#     cv2.imshow("Face Recognition", frame)
-
+    cv2.imshow("YOLO Face Detection and Object Detection", frame)
     if cv2.waitKey(1) & 0xFF == 27:  # Press 'Esc' to exit
         break
 
