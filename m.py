@@ -19,7 +19,7 @@ with open(coco_names_path, "r") as f:
 # Open the camera
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)  # Use '0' for the default camera. Change to '1' if you have an additional camera.
 
-known_image = face_recognition.load_image_file("C:/Users/Pradeep kumar mahato/Pictures/Camera Roll/WIN_20240131_11_24_24_Pro.jpg")
+known_image = face_recognition.load_image_file("C:/Users/Jagdeep kumar mahto/Pictures/Camera Roll/WIN_20240131_11_24_24_Pro.jpg")
 known_encoding = face_recognition.face_encodings(known_image)[0]
 # Set full screen display mode
 # Set full screen display mode
